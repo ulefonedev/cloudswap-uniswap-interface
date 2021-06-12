@@ -27,10 +27,10 @@ const From = ({ IERC20, userBalance, userAddress }) => {
                 />
         </Grid>
         <Grid item xs={6}>
-            <Typography align={'right'}>{userBalance}</Typography>
+            <Typography align={'right'}>{tokenBal}</Typography>
         </Grid>
         <Grid item xs={12}>
-            <Typography >Balanace: {userBalance}</Typography>
+            <Typography >Balanace:{userBalance} ETH</Typography>
         </Grid>
     </Grid>
     )
