@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { Typography } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import FromSelect from './FromSelect'
+import Input from './Input'
 
 
 
 const From = ({ 
-    IERC20, userBalance, userAddress, tokenBal, setTokenBal, token, setToken }) => {
+    IERC20, userBalance, userAddress, tokenBal, setTokenBal, token, setToken, 
+setInputAmount }) => {
 
 
     return (
@@ -25,10 +27,12 @@ const From = ({
                 />
         </Grid>
         <Grid item xs={6}>
-            <Typography align={'right'}>{tokenBal} </Typography>
+            <Typography align={'right'}><Input setInputAmount={setInputAmount}/></Typography>
         </Grid>
         <Grid item xs={12}>
-            <Typography >Balanace:{userBalance} ETH</Typography>
+            <Typography >
+            Balanace:{tokenBal} {token}
+            </Typography>
         </Grid>
     </Grid>
     )

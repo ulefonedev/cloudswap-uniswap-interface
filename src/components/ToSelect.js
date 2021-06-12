@@ -20,23 +20,24 @@ const useStyles = makeStyles({
    }
   });
   
-  export const ToSelect = ({ uniswapRouter, tokenBal, token }) => { 
+  export const ToSelect = ({ uniswapRouter, inputAmount, token, setQuote,
+  toToken, setToToken }) => { 
 
     const classes = useStyles();
-    const [toToken, setToToken] = useState('');
+    
 
     const fetchQuote = async () => {
       if (typeof window.ethereum !== 'undefined'){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const baseAddress = Tokens.[token];
         const outputAddress = Tokens.[toToken];
-        tokenBal = tokenBal.toString()
-        tokenBal = ethers.utils.parseUnits(tokenBal)
+        console.log(inputAmount, baseAddress, outputAddress)
+        inputAmount = ethers.utils.parseUnits(inputAmount)
         const contract = new ethers.Contract(uniswapAddress, uniswapRouter, provider)
         try {
-          const data = await contract.getAmountsOut(tokenBal, [baseAddress, outputAddress])
+          const data = await contract.getAmountsOut(inputAmount, [baseAddress, outputAddress])
           const vals = data.map(el => ethers.utils.formatUnits(el._hex));
-          console.log(data, vals);
+          setQuote(vals[1]);
         } catch (err) {
           console.log("Error: ", err)
         }     
@@ -49,7 +50,7 @@ const useStyles = makeStyles({
 
       useEffect(() => {
         fetchQuote()
-      }, [toToken]);
+      }, [toToken, inputAmount]);
 
     return (
       <Box className={classes.btn} boxShadow={6}>

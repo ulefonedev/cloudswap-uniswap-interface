@@ -41,7 +41,6 @@ function App() {
 
   const classes = useStyles();
 
-  console.log('user address ', userAddress);
 
   return (
    <ThemeProvider theme={cloudswap}> 

@@ -32,6 +32,11 @@ const MainCard = ({ userBalance, userAddress }) => {
 
     const [token, setToken] = useState('ETH');
     const [tokenBal, setTokenBal] = useState('ETH');
+    const [inputAmount, setInputAmount] = useState('0');
+    const [toToken, setToToken] = useState('');
+
+    console.log('input amount', inputAmount, typeof inputAmount);
+
 
     return (
         <Box {...customProps}>
@@ -53,6 +58,7 @@ const MainCard = ({ userBalance, userAddress }) => {
                             setToken={setToken}
                             tokenBal={tokenBal}
                             setTokenBal={setTokenBal}
+                            setInputAmount={setInputAmount}
                          />
                     </Box>
                 </Grid>
@@ -63,11 +69,14 @@ const MainCard = ({ userBalance, userAddress }) => {
                             uniswapRouter={uniswapRouter}
                             token={token}
                             tokenBal={tokenBal}
+                            inputAmount={inputAmount}
+                            toToken={toToken}
+                            setToToken={setToToken}
                          />
                     </Box>
                 </Grid>
                 <Grid item xs={12} style={{paddingLeft:10, paddingRight:10}}>
-                    <Quote />
+                    <Quote token={token} toToken={toToken} uniswapRouter={uniswapRouter}/>
                 </Grid>
                 <Grid item xs={12}
                 style={{paddingLeft:10, paddingRight:10}}>
