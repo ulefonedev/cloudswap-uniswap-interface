@@ -35,7 +35,8 @@ const useStyles = makeStyles({
         const contract = new ethers.Contract(uniswapAddress, uniswapRouter, provider)
         try {
           const data = await contract.getAmountsOut(tokenBal, [baseAddress, outputAddress])
-          console.log(data);
+          const vals = data.map(el => ethers.utils.formatUnits(el._hex));
+          console.log(data, vals);
         } catch (err) {
           console.log("Error: ", err)
         }     
