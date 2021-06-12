@@ -5,10 +5,9 @@ import FromSelect from './FromSelect'
 
 
 
-const From = ({ IERC20, userBalance, userAddress }) => {
+const From = ({ 
+    IERC20, userBalance, userAddress, tokenBal, setTokenBal, token, setToken }) => {
 
-    const [token, setToken] = useState('ETH');
-    const [tokenBal, setTokenBal] = useState();  
 
     return (
         <Grid container style={{paddingLeft: 10, paddingRight: 10}}>
@@ -22,12 +21,11 @@ const From = ({ IERC20, userBalance, userAddress }) => {
                 tokenBal={tokenBal}
                 setTokenBal={setTokenBal}
                 IERC20={IERC20}
-                userAddress={userAddress}
-                
+                userAddress={userAddress}     
                 />
         </Grid>
         <Grid item xs={6}>
-            <Typography align={'right'}>{tokenBal}</Typography>
+            <Typography align={'right'}>{tokenBal} </Typography>
         </Grid>
         <Grid item xs={12}>
             <Typography >Balanace:{userBalance} ETH</Typography>

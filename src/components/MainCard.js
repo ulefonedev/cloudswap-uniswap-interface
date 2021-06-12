@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -5,7 +6,11 @@ import Button from '@material-ui/core/Button'
 import From from './From'
 import To from './To'
 import MainButton from './MainButton'
+import Quote from './Quote'
 import IERC20 from '../abis/IERC20.json'
+import uniswap_router2_abi from '../abis/uniswap_router2_abi.json'
+
+const uniswapRouter = uniswap_router2_abi;
 
 const customProps = {
     display: 'flex',
@@ -24,6 +29,10 @@ const customProps = {
   }
 
 const MainCard = ({ userBalance, userAddress }) => {
+
+    const [token, setToken] = useState('ETH');
+    const [tokenBal, setTokenBal] = useState('ETH');
+
     return (
         <Box {...customProps}>
             <Grid container style={{flexGrow: 1}}>
@@ -37,17 +46,28 @@ const MainCard = ({ userBalance, userAddress }) => {
                 style={{paddingLeft:10, paddingRight:10}}>
                     <Box {...customBorderProps}>
                          <From 
-                         IERC20={IERC20} 
-                         userBalance={userBalance}
-                         userAddress={userAddress}
+                            IERC20={IERC20} 
+                            userBalance={userBalance}
+                            userAddress={userAddress}
+                            token={token}
+                            setToken={setToken}
+                            tokenBal={tokenBal}
+                            setTokenBal={setTokenBal}
                          />
                     </Box>
                 </Grid>
                 <Grid item xs={12}
                 style={{paddingLeft:10, paddingRight:10}}>
                     <Box {...customBorderProps} >
-                         <To />
+                         <To 
+                            uniswapRouter={uniswapRouter}
+                            token={token}
+                            tokenBal={tokenBal}
+                         />
                     </Box>
+                </Grid>
+                <Grid item xs={12} style={{paddingLeft:10, paddingRight:10}}>
+                    <Quote />
                 </Grid>
                 <Grid item xs={12}
                 style={{paddingLeft:10, paddingRight:10}}>

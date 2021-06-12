@@ -7,9 +7,7 @@ import ConnectButton from './components/ConnectButton'
 import Grid from '@material-ui/core/Grid'
 import { createMuiTheme, } from '@material-ui/core/styles'
 import { makeStyles, ThemeProvider } from '@material-ui/styles';
-import uniswap_router2_abi from './abis/uniswap_router2_abi.json'
 
-const uniswapRouter = uniswap_router2_abi;
 
 
 const cloudswap = createMuiTheme({

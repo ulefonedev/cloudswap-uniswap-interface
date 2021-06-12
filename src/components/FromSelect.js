@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { shadows } from '@material-ui/system'
 import Tokens from '../addresses'
 
-const symbols = ['', 'WETH', 'DAI', 'BAT']
+const symbols = ['', 'WETH', 'DAI', 'BAT', 'USDC', 'UNI']
 
 const useStyles = makeStyles({
    btn: {
@@ -18,12 +18,10 @@ const useStyles = makeStyles({
     height: '36px' 
    }
   });
-  
-  
+   
   export const FromSelect = ({token, setToken, IERC20, userAddress, tokenBal, setTokenBal}) => { 
 
     const classes = useStyles();
-
     
     const fetchTokenBal = async () => {
       if (typeof window.ethereum !== 'undefined'){
@@ -34,7 +32,6 @@ const useStyles = makeStyles({
           const data = await contract.balanceOf(userAddress)
           const balance = ethers.utils.formatUnits(data._hex)
           setTokenBal(balance)
-          console.log(balance)
         } catch (err) {
           console.log("Error: ", err)
         }         
