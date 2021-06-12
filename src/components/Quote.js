@@ -14,14 +14,12 @@ const Quote = ({ token, toToken, uniswapRouter }) => {
           const provider = new ethers.providers.Web3Provider(window.ethereum)
           const baseAddress = Tokens.[token];
           const outputAddress = Tokens.[toToken];
-          console.log(1, baseAddress, outputAddress)
           const contract = new ethers.Contract(uniswapAddress, uniswapRouter, provider)
           let singleToken = "1"
           singleToken = ethers.utils.parseUnits(singleToken);
           try {
             const data = await contract.getAmountsOut(singleToken._hex , [baseAddress, outputAddress])
             const vals = data.map(el => ethers.utils.formatUnits(el._hex));
-            console.log('single quote data', vals)
             setSingleQuote(vals[1]);
           } catch (err) {
             console.log("Error: ", err)

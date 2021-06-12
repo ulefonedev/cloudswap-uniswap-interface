@@ -7,19 +7,11 @@ import From from './From'
 import To from './To'
 import MainButton from './MainButton'
 import Quote from './Quote'
+import InfoBox from './InfoBox'
 import IERC20 from '../abis/IERC20.json'
 import uniswap_router2_abi from '../abis/uniswap_router2_abi.json'
 
 const uniswapRouter = uniswap_router2_abi;
-
-const customProps = {
-    display: 'flex',
-    bgcolor: '#E6F7FF',
-    borderRadius: '10px',
-    boxShadow : 8,
-    m: 1,
-    style: { width: '496px', height: '395px' },
-  }
 
   const customBorderProps = {
       border: 1,
@@ -30,13 +22,29 @@ const customProps = {
 
 const MainCard = ({ userBalance, userAddress }) => {
 
+    const customProps = {
+        display: 'flex',
+        bgcolor: '#E6F7FF',
+        borderRadius: '10px',
+        boxShadow : 8,
+        m: 1,
+        style: { width: '496px', height: '395px' },
+      }
+
     const [token, setToken] = useState('ETH');
     const [tokenBal, setTokenBal] = useState('ETH');
     const [inputAmount, setInputAmount] = useState('0');
     const [toToken, setToToken] = useState('');
+    const [confirmSwap, setConfirmSwap] = useState();
+
 
     console.log('input amount', inputAmount, typeof inputAmount);
 
+    const infoBoxUI = () => {
+        console.log('infoBoxUI')
+        customProps.style.height = '588px'
+        return <InfoBox />
+    }
 
     return (
         <Box {...customProps}>
@@ -78,9 +86,13 @@ const MainCard = ({ userBalance, userAddress }) => {
                 <Grid item xs={12} style={{paddingLeft:10, paddingRight:10}}>
                     <Quote token={token} toToken={toToken} uniswapRouter={uniswapRouter}/>
                 </Grid>
+                <Grid item xs={12} 
+                style={{paddingLeft:10, paddingRight:10}}>
+                    {confirmSwap? infoBoxUI() : null} 
+                </Grid>
                 <Grid item xs={12}
                 style={{paddingLeft:10, paddingRight:10}}>
-                    <MainButton />
+                    <MainButton confirmSwap={confirmSwap} setConfirmSwap={setConfirmSwap}/>
                 </Grid>
             </Grid>
             
