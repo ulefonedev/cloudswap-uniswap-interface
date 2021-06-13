@@ -14,18 +14,19 @@ const customProps = {
   }
 
 
-const SwipeOrClaim = () => {
+const SwapOrClaim = ({ setSwitchUI }) => {
+
 
     return (
         <Box {...customProps}>
             <Box p={1}>
-                <SwapButton  />
+                <SwapButton setSwitchUI={setSwitchUI}/>
             </Box>
             <Box p={1}>
-                <ClaimButton  />
+                <ClaimButton setSwitchUI={setSwitchUI}/>
             </Box>
         </Box>
     )
 }
 
-export default SwipeOrClaim
+export default SwapOrClaim

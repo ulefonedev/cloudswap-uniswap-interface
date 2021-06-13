@@ -15,9 +15,15 @@ const styles = {
   
   const useStyles = makeStyles(styles);
 
-  export const SwapButton = () => {    
+  export const SwapButton = ({ setSwitchUI }) => {  
+       
     const classes = useStyles();
-    return <Button className={classes.root} >Swap</Button>;
+
+    const handleClick = () => {
+      setSwitchUI(false) 
+    }
+
+    return <Button className={classes.root} onClick={handleClick}>Swap</Button>;
   };
 
 export default SwapButton

@@ -64,6 +64,6 @@ const useStyles = makeStyles({
         </Button>
         </Box>
     )
-  };
+  }
 
 export default FromSelect

@@ -12,12 +12,18 @@ const styles = {
         }
       }
   };
-  
+ 
   const useStyles = makeStyles(styles);
 
-  export const ClaimButton = () => {    
+  export const ClaimButton = ({ setSwitchUI }) => {    
+
     const classes = useStyles();
-    return <Button className={classes.root}>Claim</Button>;
+
+    const handleClick = () => {
+      setSwitchUI(true)  
+    }  
+
+    return <Button className={classes.root} onClick={handleClick}>Claim</Button>;
   };
 
 export default ClaimButton

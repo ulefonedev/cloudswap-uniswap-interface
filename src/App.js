@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css';
 import logo from './images/logo.png'
 import MainCard from './components/MainCard'
-import SwipeOrClaim from './components/SwapOrClaim'
+import ClaimCard from './components/ClaimCard'
+import SwapOrClaim from './components/SwapOrClaim'
 import ConnectButton from './components/ConnectButton'
 import Grid from '@material-ui/core/Grid'
 import { createMuiTheme, } from '@material-ui/core/styles'
@@ -34,14 +35,18 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+
+
 function App() {
 
   const [userBalance, setUserBalance] = useState();
   const [userAddress, setUserAddress] = useState();
   const [signer, setSigner] = useState();
+  const [switchUI, setSwitchUI] = useState();
 
   const classes = useStyles();
-
+  
+  console.log(switchUI);
 
   return (
    <ThemeProvider theme={cloudswap}> 
@@ -56,7 +61,7 @@ function App() {
         alignItems="center"
         justify="center"
         style={{ paddingTop: 10}}>
-       <SwipeOrClaim />
+       <SwapOrClaim setSwitchUI={setSwitchUI}/>
      </Grid>
      <Grid xs={4} container 
         justify="flex-end"
@@ -73,12 +78,13 @@ function App() {
      <Grid container
         direction="column"
         alignItems="center"
-        style={{ minHeight: '100vh', paddingTop: 45 }} >
-       <MainCard 
+        style={{ minHeight: '100vh', paddingTop: 45 }} >  
+       
+        {switchUI ? <ClaimCard /> 
+        :  <MainCard 
         userBalance={userBalance}
         userAddress={userAddress}
-        signer={signer}
-       />
+        signer={signer}/> }
      </Grid>
    </Grid>
    </ThemeProvider>

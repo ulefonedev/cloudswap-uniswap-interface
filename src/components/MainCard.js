@@ -20,16 +20,17 @@ const uniswapRouter = uniswap_router2_abi;
       style: {width: '465px', height: '114px',}
   }
 
-const MainCard = ({ userBalance, userAddress, signer }) => {
+  const customProps = {
+    display: 'flex',
+    bgcolor: '#E6F7FF',
+    borderRadius: '10px',
+    boxShadow : 8,
+    m: 1,
+    style: { width: '496px', height: '395px' },
+  }
 
-    const customProps = {
-        display: 'flex',
-        bgcolor: '#E6F7FF',
-        borderRadius: '10px',
-        boxShadow : 8,
-        m: 1,
-        style: { width: '496px', height: '395px' },
-      }
+const MainCard = ({ userBalance, userAddress, signer }) => {
+  
 
     const [token, setToken] = useState('ETH');
     const [tokenBal, setTokenBal] = useState('ETH');
@@ -37,8 +38,6 @@ const MainCard = ({ userBalance, userAddress, signer }) => {
     const [toToken, setToToken] = useState('');
     const [confirmSwap, setConfirmSwap] = useState();
     const[quote, setQuote] = useState('')
-
-
 
     const infoBoxUI = () => {
         customProps.style.height = '588px'
@@ -106,7 +105,6 @@ const MainCard = ({ userBalance, userAddress, signer }) => {
                     />
                 </Grid>
             </Grid>
-            
         </Box>
     )
 }
