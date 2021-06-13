@@ -4,8 +4,8 @@ const Tokens = {
     BAT: '0x2d12186fbb9f9a8c28b3ffdd4c42920f8539d738',
     UNI: '0x075A36BA8846C6B6F53644fDd3bf17E5151789DC',
     USDC: '0xe22da380ee6B445bb8273C81944ADEB6E8450422',
-
-
 };
+
+
 
 export default Tokens

@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography'
 import ToSelect from './ToSelect'
 
 const To = ({ uniswapRouter, tokenBal, token, inputAmount,
-toToken, setToToken }) => {
+toToken, setToToken, quote, setQuote }) => {
 
-    const[quote, setQuote] = useState('')
+    
 
     return (
     <Grid container style={{paddingLeft: 10, paddingRight: 10}}>
@@ -23,7 +23,9 @@ toToken, setToToken }) => {
                 token={token}
                 inputAmount={inputAmount}
                 toToken={toToken}
-                setToToken={setToToken}    
+                setToToken={setToToken}
+                quote={quote}
+                setQuote={setQuote}    
                 />
         </Grid>
         <Grid item xs={6}>

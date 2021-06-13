@@ -20,7 +20,7 @@ const uniswapRouter = uniswap_router2_abi;
       style: {width: '465px', height: '114px',}
   }
 
-const MainCard = ({ userBalance, userAddress }) => {
+const MainCard = ({ userBalance, userAddress, signer }) => {
 
     const customProps = {
         display: 'flex',
@@ -36,14 +36,13 @@ const MainCard = ({ userBalance, userAddress }) => {
     const [inputAmount, setInputAmount] = useState('0');
     const [toToken, setToToken] = useState('');
     const [confirmSwap, setConfirmSwap] = useState();
+    const[quote, setQuote] = useState('')
 
 
-    console.log('input amount', inputAmount, typeof inputAmount);
 
     const infoBoxUI = () => {
-        console.log('infoBoxUI')
         customProps.style.height = '588px'
-        return <InfoBox />
+        return <InfoBox quote={quote}/>
     }
 
     return (
@@ -80,6 +79,8 @@ const MainCard = ({ userBalance, userAddress }) => {
                             inputAmount={inputAmount}
                             toToken={toToken}
                             setToToken={setToToken}
+                            quote={quote}
+                            setQuote={setQuote}
                          />
                     </Box>
                 </Grid>
@@ -92,7 +93,17 @@ const MainCard = ({ userBalance, userAddress }) => {
                 </Grid>
                 <Grid item xs={12}
                 style={{paddingLeft:10, paddingRight:10}}>
-                    <MainButton confirmSwap={confirmSwap} setConfirmSwap={setConfirmSwap}/>
+                    <MainButton 
+                    confirmSwap={confirmSwap} 
+                    setConfirmSwap={setConfirmSwap}
+                    uniswapRouter={uniswapRouter}
+                    IERC20={IERC20}
+                    token={token}
+                    toToken={toToken}
+                    inputAmount={inputAmount}
+                    signer={signer}
+                    userAddress={userAddress}
+                    />
                 </Grid>
             </Grid>
             

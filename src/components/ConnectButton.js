@@ -20,7 +20,7 @@ const styles = {
   
   const useStyles = makeStyles(styles);
 
-const ConnectButton = ({ userBalance, setUserBalance, userAddress, setUserAddress }) => {
+const ConnectButton = ({ userBalance, setUserBalance, userAddress, setUserAddress, setSigner}) => {
 
   const classes = useStyles();
 
@@ -29,6 +29,7 @@ const ConnectButton = ({ userBalance, setUserBalance, userAddress, setUserAddres
   }
   
   const getWalletInfo = async (signer, provider) => {
+    setSigner(signer);
     const address = await signer.getAddress();
     const bigBalance = await provider.getBalance(address)
     const balance = ethers.utils.formatUnits(bigBalance._hex)
@@ -42,7 +43,7 @@ const ConnectButton = ({ userBalance, setUserBalance, userAddress, setUserAddres
 
   async function connectWallet() {
     if (typeof window.ethereum !== 'undefined') {      
-      await requestAccount().then( () => {
+      await requestAccount().then(() => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         getWalletInfo(signer, provider);

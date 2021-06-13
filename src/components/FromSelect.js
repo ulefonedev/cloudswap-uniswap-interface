@@ -31,7 +31,7 @@ const useStyles = makeStyles({
         try {
           const data = await contract.balanceOf(userAddress)
           const balance = ethers.utils.formatUnits(data._hex)
-          setTokenBal(balance)
+          setTokenBal(parseFloat(balance).toFixed(3))
         } catch (err) {
           console.log("Error: ", err)
         }         

@@ -20,7 +20,7 @@ const Quote = ({ token, toToken, uniswapRouter }) => {
           try {
             const data = await contract.getAmountsOut(singleToken._hex , [baseAddress, outputAddress])
             const vals = data.map(el => ethers.utils.formatUnits(el._hex));
-            setSingleQuote(vals[1]);
+            setSingleQuote(parseFloat(vals[1]).toFixed(7));
           } catch (err) {
             console.log("Error: ", err)
           }
@@ -33,7 +33,7 @@ const Quote = ({ token, toToken, uniswapRouter }) => {
     
     
     return (
-        <Typography>
+        <Typography style={{paddingLeft: 5 }}>
             1 {token} = {singleQuote}
         </Typography>
         

@@ -8,15 +8,15 @@ import Grid from '@material-ui/core/Grid'
 import { createMuiTheme, } from '@material-ui/core/styles'
 import { makeStyles, ThemeProvider } from '@material-ui/styles';
 
-
-
 const cloudswap = createMuiTheme({
-  typography: {
+  palette: {
+    primary: {
+      main: '#BAE7FF'
+    }
+  },
+  typography: {  
     fontFamily: ['IBM Plex Mono','Roboto','Helvetica Neue'].join(','),
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightMedium: 500,
-    fontWeightBold: 600},
+    },
   overrides: {
     MuiButton: {
       root: {
@@ -38,6 +38,7 @@ function App() {
 
   const [userBalance, setUserBalance] = useState();
   const [userAddress, setUserAddress] = useState();
+  const [signer, setSigner] = useState();
 
   const classes = useStyles();
 
@@ -66,6 +67,7 @@ function App() {
         setUserBalance={setUserBalance}
         userAddress={userAddress}
         setUserAddress={setUserAddress} 
+        setSigner={setSigner}
         />
      </Grid>
      <Grid container
@@ -75,6 +77,7 @@ function App() {
        <MainCard 
         userBalance={userBalance}
         userAddress={userAddress}
+        signer={signer}
        />
      </Grid>
    </Grid>

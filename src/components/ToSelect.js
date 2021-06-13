@@ -21,11 +21,10 @@ const useStyles = makeStyles({
   });
   
   export const ToSelect = ({ uniswapRouter, inputAmount, token, setQuote,
-  toToken, setToToken }) => { 
+  toToken, setToToken,  }) => { 
 
     const classes = useStyles();
     
-
     const fetchQuote = async () => {
       if (typeof window.ethereum !== 'undefined'){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -37,7 +36,7 @@ const useStyles = makeStyles({
         try {
           const data = await contract.getAmountsOut(inputAmount, [baseAddress, outputAddress])
           const vals = data.map(el => ethers.utils.formatUnits(el._hex));
-          setQuote(vals[1]);
+          setQuote(parseFloat(vals[1]).toFixed(3));
         } catch (err) {
           console.log("Error: ", err)
         }     
