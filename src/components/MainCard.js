@@ -40,7 +40,7 @@ const MainCard = ({ userBalance, userAddress, signer }) => {
     const[quote, setQuote] = useState('')
 
     const infoBoxUI = () => {
-        customProps.style.height = '588px'
+        //customProps.style.height = '588px'
         return <InfoBox quote={quote}/>
     }
 

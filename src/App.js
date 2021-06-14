@@ -61,7 +61,9 @@ function App() {
         alignItems="center"
         justify="center"
         style={{ paddingTop: 10}}>
-       <SwapOrClaim setSwitchUI={setSwitchUI}/>
+       <SwapOrClaim 
+        setSwitchUI={setSwitchUI}
+       />
      </Grid>
      <Grid xs={4} container 
         justify="flex-end"
@@ -80,7 +82,7 @@ function App() {
         alignItems="center"
         style={{ minHeight: '100vh', paddingTop: 45 }} >  
        
-        {switchUI ? <ClaimCard /> 
+        {switchUI ? <ClaimCard signer={signer}/> 
         :  <MainCard 
         userBalance={userBalance}
         userAddress={userAddress}

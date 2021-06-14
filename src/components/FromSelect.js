@@ -46,7 +46,6 @@ const useStyles = makeStyles({
       fetchTokenBal()
     }, [token]);
         
-    
       //console.log(Tokens);
     return (
         <Box className={classes.btn} boxShadow={6}>
