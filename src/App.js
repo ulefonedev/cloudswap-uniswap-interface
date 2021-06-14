@@ -82,7 +82,8 @@ function App() {
         alignItems="center"
         style={{ minHeight: '100vh', paddingTop: 45 }} >  
        
-        {switchUI ? <ClaimCard signer={signer}/> 
+        {switchUI ? <ClaimCard 
+        signer={signer} userAddress={userAddress}/> 
         :  <MainCard 
         userBalance={userBalance}
         userAddress={userAddress}

@@ -10,11 +10,11 @@ import { pop } from 'fp-ts/lib/Map'
 
 const airdropFactory = '0xB4f80F498ec97B4b3aBCB6d96452606dd8428BCa'
 let tokens = [
-    {name : 'RAIN', address: '', claimable: ''},
-    {name: 'THUNDER', address: '', claimable: ''},
-    {name: 'FROST', address: '', claimable: ''},
-    {name: 'SLEET', address: '', claimable: ''},
-    {name: 'VAPOUR', address: '', claimable: ''},
+    {name : 'RAIN', address: '', claimable: '', active: ''},
+    {name: 'THUNDER', address: '', claimable: '', active: ''},
+    {name: 'FROST', address: '', claimable: '', active: ''},
+    {name: 'SLEET', address: '', claimable: '', active: ''},
+    {name: 'VAPOUR', address: '', claimable: '', active: ''},
 ]
 
 const customProps = {
@@ -34,7 +34,7 @@ const customProps = {
 }
 
 
-const ClaimCard = ({ signer }) => {
+const ClaimCard = ({ signer, userAddress }) => {
 
     const [claimable, setClaimable ] = useState();
 
@@ -64,7 +64,12 @@ const ClaimCard = ({ signer }) => {
                     token.claimable = 0;
                 } else {
                 token.claimable = claimable; 
-                setClaimable(claimable)                 
+                setClaimable(claimable)
+                const balance = await contract.balanceOf(userAddress);
+                const balanceFormatted = ethers.utils.formatUnits(balance._hex)
+                if(balanceFormatted > 0) {
+                    token.active = false
+                } else { token.active = true }   
                 console.log('token is', token);
                     }
                 } 
