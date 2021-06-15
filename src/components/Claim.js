@@ -8,22 +8,21 @@ const styles = {
         width: 112,
         height: 40,
         "&:hover": {
-          background: "#f69d3c"
+          background: "#E6F7FF"
         }
       }
   };
  
   const useStyles = makeStyles(styles);
 
-  export const ClaimButton = ({ setSwitchUI }) => {    
+  export const ClaimButton = ({ setSwitchUI, switchUI }) => {    
 
     const classes = useStyles();
-
-    const handleClick = () => {
-      setSwitchUI(true)  
-    }  
-
-    return <Button className={classes.root} onClick={handleClick}>Claim</Button>;
+  
+    return (<div>
+    {switchUI? <Button className={classes.root}>Claim</Button> 
+    : <Button onClick={() => setSwitchUI(true)}>Claim</Button>}</div>
+    )
   };
 
 export default ClaimButton

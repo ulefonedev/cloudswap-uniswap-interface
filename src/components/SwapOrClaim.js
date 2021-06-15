@@ -1,5 +1,4 @@
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
 import SwapButton from './Swap'
 import ClaimButton from './Claim'
 
@@ -13,17 +12,21 @@ const customProps = {
     style: { width: '260px', height: '59px' },
   }
 
-
-const SwapOrClaim = ({ setSwitchUI }) => {
-
+const SwapOrClaim = ({ setSwitchUI, switchUI }) => {
 
     return (
         <Box {...customProps}>
-            <Box p={1}>
-                <SwapButton setSwitchUI={setSwitchUI}/>
+            <Box p={1} pl={3}>
+                <SwapButton 
+                setSwitchUI={setSwitchUI}
+                switchUI={switchUI}    
+                />
             </Box>
-            <Box p={1}>
-                <ClaimButton setSwitchUI={setSwitchUI}/>
+            <Box p={1} pr={3}>
+                <ClaimButton 
+                setSwitchUI={setSwitchUI}
+                switchUI={switchUI}    
+                />
             </Box>
         </Box>
     )

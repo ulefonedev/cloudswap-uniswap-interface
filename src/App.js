@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css';
 import logo from './images/logo.png'
 import MainCard from './components/MainCard'
@@ -21,8 +21,13 @@ const cloudswap = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        textTransform: 'none'
+        textTransform: 'none',      
       }
+    }
+  },
+  props: {
+    MuiButton :{
+      disableRipple: true
     }
   }
 });
@@ -42,12 +47,10 @@ function App() {
   const [userBalance, setUserBalance] = useState();
   const [userAddress, setUserAddress] = useState();
   const [signer, setSigner] = useState();
-  const [switchUI, setSwitchUI] = useState();
+  const [switchUI, setSwitchUI] = useState(false);
 
   const classes = useStyles();
   
-  console.log(switchUI);
-
   return (
    <ThemeProvider theme={cloudswap}> 
    <Grid container spacing={2} className={classes.grid}>
@@ -61,7 +64,8 @@ function App() {
         alignItems="center"
         justify="center"
         style={{ paddingTop: 10}}>
-       <SwapOrClaim 
+       <SwapOrClaim
+        switchUI={switchUI} 
         setSwitchUI={setSwitchUI}
        />
      </Grid>

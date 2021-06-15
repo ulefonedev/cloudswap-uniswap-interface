@@ -12,15 +12,15 @@ const Quote = ({ token, toToken, uniswapRouter }) => {
     const fetchSingleQuote = async () => {
         if (typeof window.ethereum !== 'undefined'){
           const provider = new ethers.providers.Web3Provider(window.ethereum)
-          const baseAddress = Tokens.[token];
-          const outputAddress = Tokens.[toToken];
+          const baseAddress = Tokens[token];
+          const outputAddress = Tokens[toToken];
           const contract = new ethers.Contract(uniswapAddress, uniswapRouter, provider)
           let singleToken = "1"
           singleToken = ethers.utils.parseUnits(singleToken);
           try {
             const data = await contract.getAmountsOut(singleToken._hex , [baseAddress, outputAddress])
             const vals = data.map(el => ethers.utils.formatUnits(el._hex));
-            setSingleQuote(parseFloat(vals[1]).toFixed(7));
+            setSingleQuote(parseFloat(vals[1]).toFixed(4));
           } catch (err) {
             console.log("Error: ", err)
           }
@@ -29,12 +29,13 @@ const Quote = ({ token, toToken, uniswapRouter }) => {
       
       useEffect(() => {
           fetchSingleQuote();
+          // eslint-disable-next-line react-hooks/exhaustive-deps
       },[token, toToken])
     
     
     return (
-        <Typography style={{paddingLeft: 5 }}>
-            1 {token} = {singleQuote}
+        <Typography align={"right"}>
+            1 {token} = {singleQuote} {toToken}
         </Typography>
         
     )
