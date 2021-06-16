@@ -45,33 +45,32 @@ const ClaimCard = ({ signer, userAddress }) => {
             try {
                 const addresses = await contract.getTokens();
                 for(let i = 0; i < addresses.length; i++){ //maps names to addresses
-                    tokens[i].address = addresses[i];        
+                    tokens[i].address = addresses[i];
                 }
-                isClaimed(provider);
             } catch (err) {
                 console.log("Error: ", err)
-            }         
+            }
+            isClaimed(provider);         
         }
     }
 
-    const isClaimed = async (provider) => {       
+    const isClaimed = async (provider) => {          
         tokens.forEach( async token => {
             const contract = new ethers.Contract(token.address, AirdropERC20, provider);
             try {
                 const data = await contract.claimable(userAddress)
                 const claimable = ethers.utils.formatUnits(data._hex)
-                token.claimable = claimable; 
+                token.claimable = claimable;
                 if(claimable > 0){
                     token.active = true;
                 } else{
                     token.active = false;
-                }
-            }
-            catch(err) {
-                console.log("Error: ", err)
-            }
-            setList(true);
-        });               
+                }      
+                }catch(err) {
+                    console.log("Error: ", err)
+                }         
+            });
+        setList(true);                      
     }
 
     const claim = async (e) => {
@@ -85,13 +84,13 @@ const ClaimCard = ({ signer, userAddress }) => {
                 console.log("Error: ", err)
             }
         }
+        populateList();
     }
 
     useEffect(() => {
-        console.log('rendrrrr!!!!!');
         populateList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, []);
+     }, [list]);
     
     return (
         <Box {...customProps}>{ list ? <Grid container style={{flexGrow: 1, 
