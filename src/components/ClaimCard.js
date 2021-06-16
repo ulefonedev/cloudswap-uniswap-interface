@@ -60,7 +60,6 @@ const ClaimCard = ({ signer, userAddress }) => {
             try {
                 const data = await contract.claimable(userAddress)
                 const claimable = ethers.utils.formatUnits(data._hex)
-                console.log(claimable);
                 token.claimable = claimable; 
                 if(claimable > 0){
                     token.active = true;
@@ -79,7 +78,6 @@ const ClaimCard = ({ signer, userAddress }) => {
         if (typeof window.ethereum !== 'undefined'){
             const address = e.currentTarget.dataset.buttonKey;
             const contract = new ethers.Contract(address, AirdropERC20, signer)
-            console.log(contract);
             try {
                 await contract.claim()
             }
